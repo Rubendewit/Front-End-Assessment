@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getNewsArticles } from '../getNews';
 import NewsCard from './NewsCard';
+import LoadMore from './LoadMore';
 
 class Home extends Component {
   constructor(props) {

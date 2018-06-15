@@ -6,7 +6,6 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Home from './components/Home';
 import Article from './components/Article';
 import AppBar from './components/AppBar';
-import LoadMore from './components/LoadMore';
 
 const browserHistory = createHistory();
 
