@@ -1,7 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import getNewsArticles from './getNewsArticles';
 
 const DEFAULT_IMAGE = 'https://fashionunited.info/global-assets/img/default/fu-default_1200x630_black-favicon.jpg';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +36,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <CssBaseline />
         <h1>Fashion News</h1>
         <div>
           {this.newsArticles()}
