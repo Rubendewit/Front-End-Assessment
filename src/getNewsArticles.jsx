@@ -6,7 +6,8 @@ const query = `
     fashionunitedNlNewsArticles(keywords: $keywords) {
       title
       url
-      imageUrl
+      imageUrl,
+      description
     }
   }
 `;
