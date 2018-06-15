@@ -5,11 +5,10 @@ const endpoint = 'https://fashionunited.com/graphql/';
 const articleQuery = `
 query NewsArticle($id: Int!) {
   fashionunitedNlNewsArticle(id: $id) {
-    id
     title
+    url
     imageUrl
     description
-    text
   }
 }
 `;
@@ -19,7 +18,6 @@ const articlesQuery = `
     fashionunitedNlNewsArticles(keywords: $keywords) {
       id
       title
-      url
       imageUrl
       slug
     }
