@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getNewsArticles } from './getNews';
+import { getNewsArticles } from '../getNews';
 import NewsCard from './NewsCard';
 
 class Home extends Component {
@@ -30,7 +30,7 @@ class Home extends Component {
     };
 
     const cards = this.state.newsArticles.map((newsArticle, index) =>
-      <NewsCard key={index} news={newsArticle} />
+      <NewsCard key={index} news={newsArticle} isOverview={true} />
     )
 
     return (

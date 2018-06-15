@@ -14,6 +14,9 @@ import {
 const DEFAULT_IMAGE = 'https://fashionunited.info/global-assets/img/default/fu-default_1200x630_black-favicon.jpg';
 
 const styles = {
+  link: {
+    textDecoration: 'none'
+  },
   card: {
     width: '100%',
     maxWidth: 500,
@@ -36,9 +39,18 @@ class NewsCard extends Component {
   }
 
   render() {
-    const { classes, news, key } = this.props;
+    const { classes, news, key, isOverview } = this.props;
+    
+    const url = `/article/${news.id}/${news.slug}`;
+    const buttonComponent = <Button size="small" color="primary">Read More</Button>;
 
-    const url = `/article/${news.id}/${news.slug}`
+    const linkComponent = isOverview
+      ? <Link to={url} style={styles.link}>{buttonComponent}</Link>
+      : <a href={news.url} title={news.title} style={styles.link}>{buttonComponent}</a>
+
+    const descriptionComponent = news.description
+      ? <Typography paragraph>{news.description}</Typography>
+      : null;
 
     return (
       <Card className={classes.card} key={key}>
@@ -51,10 +63,9 @@ class NewsCard extends Component {
           <Typography gutterBottom variant="headline" component="h2">
             {news.title}
           </Typography>
+          {descriptionComponent}
           <CardActions>
-            <Button size="small" color="primary" component={Link} to={url}>
-              Read More
-            </Button>
+            {linkComponent}
           </CardActions>
         </CardContent>
       </Card>
@@ -65,6 +76,7 @@ class NewsCard extends Component {
 NewsCard.propTypes = {
   classes: PropTypes.object.isRequired,
   news: PropTypes.object.isRequired,
+  isOverview: PropTypes.bool,
   style: PropTypes.object,
   key: PropTypes.number
 };

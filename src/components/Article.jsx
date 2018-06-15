@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getNewsArticle } from './getNews';
+import { getNewsArticle } from '../getNews';
 import NewsCard from './NewsCard';
 
 class Home extends Component {
@@ -31,9 +31,7 @@ class Home extends Component {
       justifyContent: 'center'
     };
 
-    const { article } = this.state; 
-
-    console.log('>>>', article, this.state)
+    const { article } = this.state;
 
     return (
       <section className="CardContainer" style={containerStyle}>
