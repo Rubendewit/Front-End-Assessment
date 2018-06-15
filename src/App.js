@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import getNewsArticles from './getNewsArticles';
 import NewsCard from './NewsCard';
 
-import './App.css';
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#2196f3'
+    }
+  }
+});
 
 class App extends Component {
   constructor(props) {
@@ -24,20 +31,38 @@ class App extends Component {
   }
 
   newsArticles() {
-    return this.state.newsArticles.map((newsArticle, index) =>
-      <NewsCard key={index} news={newsArticle} />
+    const containerStyle = {
+      display: 'flex',
+      'flex-direction': 'column',
+      'align-items': 'center'
+    };
+
+    const cardStyle = {
+      margin: '0 0 1rem 0'
+    }
+
+    const cards = this.state.newsArticles.map((newsArticle, index) =>
+      <NewsCard key={index} news={newsArticle} style={cardStyle} />
+    )
+
+    return (
+      <section className="CardContainer" style={containerStyle}>
+        {cards}
+      </section>
     )
   }
   
   render() {
     return (
-      <div className="App">
-        <CssBaseline />
-        <h1>Fashion News</h1>
-        <div>
-          {this.newsArticles()}
+      <MuiThemeProvider theme={theme}>
+        <div className="App">
+          <CssBaseline />
+          <h1>Fashion News</h1>
+          <div>
+            {this.newsArticles()}
+          </div>
         </div>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
