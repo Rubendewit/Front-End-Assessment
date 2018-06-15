@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
-import { getNewsArticles } from './getNews';
+import { getNewsArticle } from './getNews';
 import NewsCard from './NewsCard';
 
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { newsArticles: [] };
+    this.state = { article: {} };
   }
 
   async componentDidMount() {
+    const { id } = this.props.match.params;
+
     const variables = {
-      keywords: ['hunkemoller']
+      id: Number(id)
     };
   
-    const result = await getNewsArticles(variables);
+    const result = await getNewsArticle(variables);
   
     this.setState({
-      newsArticles: result.fashionunitedNlNewsArticles,
+      article: result.fashionunitedNlNewsArticle,
     });
   }
 
-  newsArticles() {
+  newsArticle() {
     const containerStyle = {
       display: 'flex',
       flexDirection: 'row',
@@ -29,13 +31,13 @@ class Home extends Component {
       justifyContent: 'center'
     };
 
-    const cards = this.state.newsArticles.map((newsArticle, index) =>
-      <NewsCard key={index} news={newsArticle} />
-    )
+    const { article } = this.state; 
+
+    console.log('>>>', article, this.state)
 
     return (
       <section className="CardContainer" style={containerStyle}>
-        {cards}
+        {<NewsCard news={article} />}
       </section>
     )
   }
@@ -43,7 +45,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {this.newsArticles()}
+        {this.newsArticle()}
       </div>
     );
   }

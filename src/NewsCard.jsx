@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
 import {
   Button,
@@ -7,7 +8,6 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Collapse,
   Typography
 } from '@material-ui/core';
 
@@ -15,7 +15,10 @@ const DEFAULT_IMAGE = 'https://fashionunited.info/global-assets/img/default/fu-d
 
 const styles = {
   card: {
-    maxWidth: 345,
+    width: '100%',
+    maxWidth: 500,
+    minWidth: 200,
+    margin: '1rem'
   },
   media: {
     height: 0,
@@ -23,7 +26,7 @@ const styles = {
   },
 };
 
-class NewsCard extends React.Component {
+class NewsCard extends Component {
 
   constructor(props) {
     super(props);
@@ -32,15 +35,13 @@ class NewsCard extends React.Component {
     };
   }
 
-  handleExpandClick = () => {
-    this.setState({expanded: !this.state.expanded });
-  };
-
   render() {
-    const { classes, news, key, style } = this.props;
+    const { classes, news, key } = this.props;
+
+    const url = `/article/${news.id}/${news.slug}`
 
     return (
-      <Card className={classes.card} key={key} style={style}>
+      <Card className={classes.card} key={key}>
         <CardMedia
           className={classes.media}
           image={news.imageUrl || DEFAULT_IMAGE}
@@ -50,17 +51,12 @@ class NewsCard extends React.Component {
           <Typography gutterBottom variant="headline" component="h2">
             {news.title}
           </Typography>
-          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-            <Typography paragraph>
-              {news.description}
-            </Typography>
-          </Collapse>
+          <CardActions>
+            <Button size="small" color="primary" component={Link} to={url}>
+              Read More
+            </Button>
+          </CardActions>
         </CardContent>
-        <CardActions>
-          <Button size="small" color="primary" onClick={this.handleExpandClick}>
-            Read More
-          </Button>
-        </CardActions>
       </Card>
     );
   };
