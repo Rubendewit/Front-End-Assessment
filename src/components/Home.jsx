@@ -6,19 +6,32 @@ import LoadMore from './LoadMore';
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { newsArticles: [] };
+    this.state = {
+      newsArticles: [],
+      articlesLoaded: 0
+    };
   }
 
-  async componentDidMount() {
+  getArticles = async (offset = 0, limit = 10) => {
     const variables = {
+      offset,
+      limit,
       keywords: ['hunkemoller']
     };
   
     const result = await getNewsArticles(variables);
-  
+    const newsArticles = result.fashionunitedNlNewsArticles;
+    const hasNextPage = newsArticles.length || !(newsArticles.length % 10);
+
     this.setState({
-      newsArticles: result.fashionunitedNlNewsArticles,
+      newsArticles: [...this.state.newsArticles, ...newsArticles],
+      articlesLoaded: this.state.articlesLoaded + newsArticles.length,
+      hasNextPage
     });
+  }
+
+  async componentDidMount() {
+    await this.getArticles();
   }
 
   newsArticles() {
@@ -45,6 +58,7 @@ class Home extends Component {
     return (
       <div>
         {this.newsArticles()}
+        <LoadMore onClick={this.getArticles} offset={this.state.articlesLoaded} isVisible={this.state.hasNextPage} />
       </div>
     );
   }

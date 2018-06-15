@@ -14,8 +14,8 @@ query NewsArticle($id: Int!) {
 `;
 
 const articlesQuery = `
-  query NewsArticles($keywords: [String]) {
-    fashionunitedNlNewsArticles(keywords: $keywords) {
+  query NewsArticles($keywords: [String], $limit: Int, $offset: Int) {
+    fashionunitedNlNewsArticles(keywords: $keywords, limit: $limit, offset: $offset) {
       id
       title
       imageUrl
