@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
-import { getNewsArticles } from '../getNews';
-import NewsCard from './NewsCard';
-import LoadMore from './LoadMore';
+import _ from 'lodash';
+import { withStyles } from '@material-ui/core/styles';
+import { getNewsArticles } from '../../getNews';
+import NewsCard from '../NewsCard/NewsCard';
+import LoadMore from '../LoadMore/LoadMore';
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    justifyContent: 'center'
+  }
+};
 
 class Home extends Component {
   constructor(props) {
@@ -18,13 +30,13 @@ class Home extends Component {
       limit,
       keywords: ['hunkemoller']
     };
-  
+    
     const result = await getNewsArticles(variables);
-    const newsArticles = result.fashionunitedNlNewsArticles;
+    const newsArticles = result && result.fashionunitedNlNewsArticles;
     const hasNextPage = !!newsArticles.length && !(newsArticles.length % limit);
 
     this.setState({
-      newsArticles: [...this.state.newsArticles, ...newsArticles],
+      newsArticles: _.uniqBy([...this.state.newsArticles, ...newsArticles], 'id'),
       articlesLoaded: this.state.articlesLoaded + newsArticles.length,
       hasNextPage
     });
@@ -35,33 +47,32 @@ class Home extends Component {
   }
 
   newsArticles() {
-    const containerStyle = {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      alignItems: 'flex-start',
-      justifyContent: 'center'
-    };
-
     const cards = this.state.newsArticles.map((newsArticle, index) =>
       <NewsCard key={index} news={newsArticle} isOverview={true} />
     )
 
     return (
-      <section className="CardContainer" style={containerStyle}>
+      <section className={this.props.classes.container}>
         {cards}
       </section>
     )
   }
 
   render() {
+
+    const loadMoreButton = this.state.hasNextPage
+      ? <LoadMore onClick={this.getArticles} offset={this.state.articlesLoaded} />
+      : null;
+
     return (
-      <div>
-        {this.newsArticles()}
-        <LoadMore onClick={this.getArticles} offset={this.state.articlesLoaded} isVisible={this.state.hasNextPage} />
+      <div key="foo">
+        <div className="ArticleContainer">
+          {this.newsArticles()}
+        </div>
+        {loadMoreButton}
       </div>
     );
   }
 }
 
-export default Home;
+export default withStyles(styles)(Home);

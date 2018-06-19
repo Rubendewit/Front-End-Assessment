@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { getNewsArticle } from '../getNews';
-import NewsCard from './NewsCard';
+import { getNewsArticle } from '../../getNews';
+import NewsCard from '../NewsCard/NewsCard';
 
 const styles = {
   container: {

@@ -12,13 +12,11 @@ const styles = {
   }
 };
 
-const LoadMore = ({ classes, onClick, offset, isVisible }) => {
-  return isVisible ? (
-    <div className={classes.wrapper} onClick={() => onClick(offset)}>
-      <Button size="small" color="primary">Load more</Button>
-      <ArrowDownward />
-    </div>
-  ) : null;
-};
+const LoadMore = ({ classes, onClick, offset }) => (
+  <div className={classes.wrapper} onClick={() => onClick(offset)}>
+    <Button size="small" color="primary">Load more</Button>
+    <ArrowDownward />
+  </div>
+);
 
 export default withStyles(styles)(LoadMore);
