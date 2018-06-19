@@ -36,7 +36,7 @@ export class Article extends Component {
   newsArticle() {
     return (
       <section className={this.props.classes.container}>
-        {<NewsCard news={this.state.article} />}
+        {<NewsCard news={this.state.article} isExternal={true} />}
       </section>
     )
   }

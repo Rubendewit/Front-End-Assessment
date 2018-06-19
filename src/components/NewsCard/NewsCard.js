@@ -39,14 +39,14 @@ class NewsCard extends Component {
   }
 
   render() {
-    const { classes, news, key, isOverview } = this.props;
+    const { classes, news, key, isExternal } = this.props;
     
     const url = `/article/${news.id}/${news.slug}`;
     const buttonComponent = <Button size="small" color="primary">Read More</Button>;
 
-    const linkComponent = isOverview
-      ? <Link to={url} style={styles.link}>{buttonComponent}</Link>
-      : <a href={news.url} title={news.title} style={styles.link}>{buttonComponent}</a>
+    const linkComponent = isExternal
+      ? <a href={news.url} title={news.title} style={styles.link}>{buttonComponent}</a>
+      : <Link to={url} style={styles.link}>{buttonComponent}</Link>
 
     const descriptionComponent = news.description
       ? <Typography paragraph>{news.description}</Typography>
@@ -76,7 +76,7 @@ class NewsCard extends Component {
 NewsCard.propTypes = {
   classes: PropTypes.object.isRequired,
   news: PropTypes.object.isRequired,
-  isOverview: PropTypes.bool,
+  isExternal: PropTypes.bool,
   key: PropTypes.number
 };
 

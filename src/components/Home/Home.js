@@ -48,7 +48,7 @@ class Home extends Component {
 
   newsArticles() {
     const cards = this.state.newsArticles.map((newsArticle, index) =>
-      <NewsCard key={index} news={newsArticle} isOverview={true} />
+      <NewsCard key={index} news={newsArticle} />
     )
 
     return (
