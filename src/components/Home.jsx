@@ -21,7 +21,7 @@ class Home extends Component {
   
     const result = await getNewsArticles(variables);
     const newsArticles = result.fashionunitedNlNewsArticles;
-    const hasNextPage = newsArticles.length || !(newsArticles.length % 10);
+    const hasNextPage = !!newsArticles.length && !(newsArticles.length % limit);
 
     this.setState({
       newsArticles: [...this.state.newsArticles, ...newsArticles],
