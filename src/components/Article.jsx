@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import { getNewsArticle } from '../getNews';
 import NewsCard from './NewsCard';
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    justifyContent: 'center'
+  }
+}
 
 class Home extends Component {
   constructor(props) {
@@ -23,19 +34,9 @@ class Home extends Component {
   }
 
   newsArticle() {
-    const containerStyle = {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      alignItems: 'flex-start',
-      justifyContent: 'center'
-    };
-
-    const { article } = this.state;
-
     return (
-      <section className="CardContainer" style={containerStyle}>
-        {<NewsCard news={article} />}
+      <section className={this.props.classes.container}>
+        {<NewsCard news={this.state.article} />}
       </section>
     )
   }
@@ -49,4 +50,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withStyles(styles)(Home);
