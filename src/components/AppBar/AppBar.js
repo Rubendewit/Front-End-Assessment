@@ -13,7 +13,7 @@ const styles = {
   },
 };
 
-function Bar(props) {
+export function Bar(props) {
   const { classes, location } = props;
 
   const showNavigationButton = location.pathname !== '/';
