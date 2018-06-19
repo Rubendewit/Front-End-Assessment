@@ -77,7 +77,6 @@ NewsCard.propTypes = {
   classes: PropTypes.object.isRequired,
   news: PropTypes.object.isRequired,
   isOverview: PropTypes.bool,
-  style: PropTypes.object,
   key: PropTypes.number
 };
 
