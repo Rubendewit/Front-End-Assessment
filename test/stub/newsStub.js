@@ -73,3 +73,11 @@ export const LAST_NEWS_STUB = {
     }
   ]
 }
+export const ARTICLE_STUB = {
+  fashionunitedNlNewsArticle: {
+    title: 'Stub title',
+    url: 'https://fashionunited.nl/nieuws/new-stub-article-released',
+    imageUrl: 'https://fashionunited.info/global-assets/img/default/fu-default_1200x630_black-favicon.jpg',
+    description: 'People celebrate world peace as new stub article is released.'
+  }
+}
