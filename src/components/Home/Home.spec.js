@@ -12,8 +12,6 @@ configure({ adapter: new Adapter() });
 let shallow;
 let sinonStub;
 
-const getArticles = (args) => args.offset === 0 ? NEWS_STUB : LAST_NEWS_STUB;
-
 beforeAll(() => {
   shallow = createShallow({ dive: true });
   sinonStub = sinon.stub(News, 'getNewsArticles').returns(NEWS_STUB);
