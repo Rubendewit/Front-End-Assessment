@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
 import { getNewsArticles } from '../../getNews';
@@ -74,5 +75,9 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(Home);

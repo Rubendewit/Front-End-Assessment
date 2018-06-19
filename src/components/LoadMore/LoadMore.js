@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -18,5 +19,11 @@ const LoadMore = ({ classes, onClick, offset }) => (
     <ArrowDownward />
   </div>
 );
+
+LoadMore.propTypes = {
+  classes: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  offset: PropTypes.number
+};
 
 export default withStyles(styles)(LoadMore);

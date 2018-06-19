@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { getNewsArticle } from '../../getNews';
 import NewsCard from '../NewsCard/NewsCard';
@@ -49,5 +50,10 @@ export class Article extends Component {
     );
   }
 }
+
+Article.propTypes = {
+  classes: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(Article);
