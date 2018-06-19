@@ -1,10 +1,8 @@
 import React from 'react';
 import { StaticRouter } from 'react-router'
-import PropTypes from 'prop-types';
 import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import sinon from 'sinon';
-import AppBar, { Bar } from './AppBar';
+import { Bar } from './AppBar';
 
 configure({ adapter: new Adapter() });
 
