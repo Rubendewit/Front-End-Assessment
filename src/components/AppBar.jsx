@@ -7,12 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  flex: {
-    flex: 1,
-  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
@@ -34,11 +28,11 @@ function Bar(props) {
     : null;
 
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static">
         <Toolbar>
           {navigationButton}
-          <Typography variant="title" color="inherit" className={classes.flex}>
+          <Typography variant="title" color="inherit">
             Fashion News
           </Typography>
         </Toolbar>
@@ -49,6 +43,7 @@ function Bar(props) {
 
 Bar.propTypes = {
   classes: PropTypes.object.isRequired,
+  location: PropTypes.object
 };
 
 export default withRouter(withStyles(styles)(Bar));
