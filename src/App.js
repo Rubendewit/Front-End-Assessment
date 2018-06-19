@@ -3,9 +3,9 @@ import { Router, Route } from 'react-router-dom'
 import createHistory from 'history/createBrowserHistory';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Home from './components/Home';
-import Article from './components/Article';
-import AppBar from './components/AppBar';
+import Home from './components/Home/Home';
+import Article from './components/Article/Article';
+import AppBar from './components/AppBar/AppBar';
 
 const browserHistory = createHistory();
 
