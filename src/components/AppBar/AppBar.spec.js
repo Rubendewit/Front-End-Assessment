@@ -1,8 +1,7 @@
 import React from 'react';
 import { StaticRouter } from 'react-router'
 import PropTypes from 'prop-types';
-import createRouterContext from 'react-router-test-context';
-import { configure, mount, shallow } from 'enzyme';
+import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 import AppBar, { Bar } from './AppBar';
